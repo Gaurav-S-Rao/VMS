@@ -66,6 +66,18 @@ const DrawerContent = () => {
             <ListItemButton
               onClick={() => navigate(element.path)}
               selected={location.pathname.split("/")[1] === element.path}
+              sx={{
+                "&.Mui-selected": {
+                  backgroundColor: "primary.main",
+                  color: "#fff",
+                },
+                "&.Mui-selected:hover": {
+                  backgroundColor: "primary.main",
+                  color: "#fff",
+                },
+                mx: "10px",
+                borderRadius: "10px",
+              }}
             >
               <ListItemIcon>
                 {index % 2 === 0 ? <AddIcon /> : <SearchIcon />}
