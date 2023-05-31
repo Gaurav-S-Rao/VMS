@@ -1,12 +1,12 @@
 import { Container, Toolbar, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 
-function CreateAppointment() {
+function ActiveAppointment() {
   return (
     <>
       <Toolbar>
         <Typography variant="h4" component="div">
-          Creation of Appointment
+          View Active Appointment
         </Typography>
       </Toolbar>
       <Container
@@ -22,12 +22,12 @@ function CreateAppointment() {
           m: "10px",
         }}
       >
-        <h1>Create Appointment</h1>
+        <h1>View Active Appointment</h1>
       </Container>
     </>
   );
 }
-CreateAppointment.propTypes = {
+ActiveAppointment.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -35,4 +35,4 @@ CreateAppointment.propTypes = {
   window: PropTypes.func,
 };
 
-export default CreateAppointment;
+export default ActiveAppointment;

@@ -13,61 +13,72 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { Button, Container, Paper } from "@mui/material";
+import { Container, Paper } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
+import { Outlet } from "react-router-dom";
 
 const drawerWidth = 300;
-const listofmenuitems = ["Create Appointment", "Active Appointment"];
+const listofmenuitems = [
+  { name: "Create Appointment", path: "createappointment" },
+  { name: "Active Appointment", path: "activeappointment" },
+];
 
 const hostDetails = { name: "Mithali", position: "Senior Software Engineer" };
 
-const drawer = (
-  <div>
-    <Toolbar>
-      <Typography variant="h4" component="div">
-        Visitor Manager
-      </Typography>
-    </Toolbar>
-    <Divider />
-    <Paper
-      sx={{
-        backgroundColor: "#e6f2ff",
-        borderRadius: "10px",
-        height: "100px",
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
-        alignItems: "center",
-        m: "10px",
-      }}
-    >
-      <Typography>
-        <b>Host Name: </b>
-        {hostDetails.name}
-      </Typography>
-      <Typography>
-        <b>Position:</b>
-        {hostDetails.position}
-      </Typography>
-    </Paper>
-    <List>
-      {listofmenuitems.map((text, index) => (
-        <ListItem key={text} disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              {index % 2 === 0 ? <AddIcon /> : <SearchIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItemButton>
-        </ListItem>
-      ))}
-    </List>
-    <Divider />
-  </div>
-);
+const DrawerContent = () => {
+  const navigate = useNavigate();
+  return (
+    <div>
+      <Toolbar>
+        <Typography variant="h4" component="div">
+          Visitor Manager
+        </Typography>
+      </Toolbar>
+      <Divider />
+      <Paper
+        sx={{
+          backgroundColor: "#e6f2ff",
+          borderRadius: "10px",
+          height: "100px",
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
+          m: "10px",
+        }}
+      >
+        <Typography>
+          <b>Host Name: </b>
+          {hostDetails.name}
+        </Typography>
+        <Typography>
+          <b>Position:</b>
+          {hostDetails.position}
+        </Typography>
+      </Paper>
+      <List>
+        {listofmenuitems.map((element, index) => (
+          <ListItem key={element.name} disablePadding>
+            <ListItemButton
+              onClick={() => navigate(element.path)}
+              selected={location.pathname.split("/")[1] === element.path}
+            >
+              <ListItemIcon>
+                {index % 2 === 0 ? <AddIcon /> : <SearchIcon />}
+              </ListItemIcon>
+              <ListItemText primary={element.name} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+    </div>
+  );
+};
 
 function Layout(props) {
   const { window } = props;
@@ -126,7 +137,7 @@ function Layout(props) {
             },
           }}
         >
-          {drawer}
+          <DrawerContent />
         </Drawer>
         <Drawer
           variant="permanent"
@@ -139,7 +150,7 @@ function Layout(props) {
           }}
           open
         >
-          {drawer}
+          <DrawerContent />
         </Drawer>
       </Box>
       <Container
@@ -147,24 +158,9 @@ function Layout(props) {
           width: { sm: `calc(100vw - ${drawerWidth}px)` },
         }}
       >
-        <Toolbar>CreateAppointment</Toolbar>
-        <Container
-          sx={{
-            backgroundColor: "#e6f2ff",
-            borderRadius: "10px",
-            height: "70vh",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
-            alignItems: "center",
-            m: "10px",
-          }}
-        >
-          <Typography>Form here</Typography>
-          <Button variant="contained">Submit</Button>
-          <Button variant="contained">Clear</Button>
-        </Container>
+        {/* <Toolbar>CreateAppointment</Toolbar> */}
+
+        <Outlet />
       </Container>
     </Container>
   );
