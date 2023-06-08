@@ -1,5 +1,7 @@
 import { Container, Toolbar, Typography } from "@mui/material";
 import PropTypes from "prop-types";
+import { TextField } from "@mui/material";
+import { Button } from "@mui/material";
 
 function CreateAppointment() {
   return (
@@ -22,7 +24,56 @@ function CreateAppointment() {
           m: "10px",
         }}
       >
-        <h1>Create Appointment</h1>
+        <div className="hero1-wrap flex flex-col gap-10 ">
+          <div className="left-container flex flex-col justify-center items-center gap-5">
+            <div className="items-center">
+              {" "}
+              Name:{" "}
+              <TextField
+                id="outlined-basic"
+                label="enter name"
+                variant="outlined"
+              />{" "}
+            </div>
+            <div className="items-center">
+              {" "}
+              Email:{" "}
+              <TextField
+                id="outlined-basic"
+                label="enter email"
+                variant="outlined"
+              />
+            </div>
+            <div className="items-center">
+              {" "}
+              Phone:{" "}
+              <TextField
+                id="outlined-basic"
+                label="enter phone no."
+                variant="outlined"
+              />
+            </div>
+            <div className="items-center">
+              {" "}
+              Purpose:{" "}
+              <TextField
+                id="outlined-basic"
+                label="enter purpose of visit"
+                variant="outlined"
+              />
+            </div>
+            <div className="items-center">
+              {" "}
+              Date:{" "}
+              <TextField
+                id="outlined-basic"
+                label="enter date of visit"
+                variant="outlined"
+              />
+            </div>
+          </div>
+          <Button variant="contained">Submit</Button>
+        </div>
       </Container>
     </>
   );
