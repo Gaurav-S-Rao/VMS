@@ -5,31 +5,28 @@ import { hostDetails } from "../data/details";
 import { useNavigate } from "react-router-dom";
 
 import { useNotification } from "../hooks/useNotification";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../Store/authSlice";
 
 // import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { displayNotification } = useNotification();
-
-  //   const handleSubmit = async (event) => {
-  //     event.preventDefault();
-  //     const data = new FormData(event.currentTarget);
-  //     await login({
-  //       email: data.get("email"),
-  //       password: data.get("password"),
-  //     });
-  //     navigate("/feeds");
-  //   };
 
   const checkValidation = ({ email, password }) => {
     if (email === hostDetails.email && password === hostDetails.password) {
+      dispatch(setLogin({ userId: 1, userRole: "host" }));
       displayNotification({
         type: "success",
         message: "Loged in as a Host Successfully",
       });
-      navigate("/dashboard?type=host");
-      return true;
+    } else {
+      displayNotification({
+        type: "error",
+        message: "Invalid Credentials",
+      });
     }
   };
 
@@ -40,7 +37,7 @@ function LoginPage() {
       email: data.get("email"),
       password: data.get("password"),
     });
-    navigate("/createappointment");
+    navigate("/dashboard?type=host");
   };
 
   return (

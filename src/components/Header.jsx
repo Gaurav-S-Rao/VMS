@@ -11,16 +11,10 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 // import { useLogoutMutation } from "./../store/api/authApiSlice";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 
-const listofmenuitems = [
-  { name: "Create Appointment", path: "createappointment" },
-  { name: "Active Appointment", path: "activeappointment" },
-];
-
 export default function ButtonAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
 
-  
   //   const [logout] = useLogoutMutation();
   //   const auth = useAuth();
   const auth = false;

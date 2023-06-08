@@ -6,3 +6,10 @@ export const hostDetails = {
   phone: "9876543210",
   address: "Bangalore",
 };
+
+export const hostOperations = [
+  { name: "Create Appointment", path: "createappointment" },
+  { name: "View Appointments", path: "viewappointments" },
+];
+
+export const securtityOperations = ["Scan Appointment"];

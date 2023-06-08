@@ -8,15 +8,7 @@ function HomePage() {
   const navigate = useNavigate();
   const handleLogin = () => navigate("/login");
   let title = "Visitor Management System";
-  let subtitle = ["Host", "Visitor", "Security"];
-
-  //   const auth = true;
-
-  //   useEffect(() => {
-  //     if (auth) {
-  //       navigate("/feeds");
-  //     }
-  //   }, []);
+//   let subtitle = ["Host", "Visitor", "Security"];
 
   return (
     <Container>
@@ -49,34 +41,31 @@ function HomePage() {
             fontWeight: 600,
           }}
         >
-          Login As:
+          Login Here:
         </Typography>
         <Box
           sx={{
             display: "flex",
           }}
         >
-          {subtitle.map((item) => (
-            <Button
-              sx={{
-                m: 2,
-                fontSize: "lg",
-                color: "gray.500",
-                maxWidth: "54ch",
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: 0.5,
-                "&:hover": {
-                  color: "primary.500",
-                },
-              }}
-              variant="contained"
-              key={item}
-              onClick={handleLogin}
-            >
-              {item}
-            </Button>
-          ))}
+          <Button
+            sx={{
+              m: 2,
+              fontSize: "lg",
+              color: "gray.500",
+              maxWidth: "54ch",
+              fontWeight: 600,
+              textTransform: "uppercase",
+              letterSpacing: 0.5,
+              "&:hover": {
+                color: "primary.500",
+              },
+            }}
+            variant="contained"
+            onClick={handleLogin}
+          >
+            Login
+          </Button>
         </Box>
       </Box>
     </Container>

@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/Layout";
-import CreateAppointment from "../Pages/CreateAppointment";
-import ActiveAppointment from "../Pages/ActiveAppointment";
+import CreateAppointment from "../components/CreateAppointment";
+import ActiveAppointment from "../components/ActiveAppointment";
 import AuthWrapper from "../components/AuthWrapper";
 import LoginPage from "./LoginPage";
 import HomePage from "./HomePage";
+import Dashboard from "../components/Dashboard";
 
 const routes = createBrowserRouter([
   {
@@ -16,8 +17,20 @@ const routes = createBrowserRouter([
       {
         element: <AuthWrapper />,
         children: [
-          { path: "/createappointment", element: <CreateAppointment /> },
-          { path: "/activeappointment", element: <ActiveAppointment /> },
+          {
+            path: "/dashboard",
+            element: <Dashboard />,
+            children: [
+              {
+                path: "/dashboard/createappointment",
+                element: <CreateAppointment />,
+              },
+              {
+                path: "/dashboard/activeappointment",
+                element: <ActiveAppointment />,
+              },
+            ],
+          },
         ],
       },
     ],

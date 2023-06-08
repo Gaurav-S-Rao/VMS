@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import PropTypes from "prop-types";
 import Notification from "./Notification";
+import useHandleRedirect from "../hooks/useHandleRedirect";
 
 // const DrawerContent = () => {
 //   const navigate = useNavigate();
@@ -67,6 +68,7 @@ import Notification from "./Notification";
 // };
 
 function Layout() {
+  useHandleRedirect();
   return (
     <>
       <Header />
