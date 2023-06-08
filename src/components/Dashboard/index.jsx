@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { setLogout } from "../../Store/authSlice";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Badge, IconButton } from "@mui/material";
@@ -66,17 +66,18 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 // eslint-disable-next-line react/prop-types
-function DashboardContent({ children }) {
+function DashboardContent() {
   const authState = useSelector((state) => state.auth);
   const [operation, setOperation] = useState([]);
-
-  console.log(operation);
+  const [title, setTitle] = useState("Welcome");
 
   useEffect(() => {
     if (authState.userId === 1) {
       setOperation(hostOperations);
+      setTitle("Welcome Host");
     } else if (authState.userId === 2) {
       setOperation(securtityOperations);
+      setTitle("Welcome Security");
     }
   }, []);
 
@@ -151,7 +152,30 @@ function DashboardContent({ children }) {
         }}
       >
         <Toolbar />
-        <Container maxWidth="lg">{children}</Container>
+        <Container maxWidth="lg">
+          {!location.pathname.split("/")[2] && (
+            <Typography
+              component="h1"
+              variant="h1"
+              color="inherit"
+              noWrap
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "80vh",
+              }}
+            >
+              {title}
+              <Typography component="h2" variant="h4" color="inherit">
+                Follow the left side menu to navigate
+              </Typography>
+            </Typography>
+          )}
+
+          <Outlet />
+        </Container>
       </Box>
     </Box>
   );

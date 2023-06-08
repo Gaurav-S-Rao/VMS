@@ -6,6 +6,7 @@ import AuthWrapper from "../components/AuthWrapper";
 import LoginPage from "./LoginPage";
 import HomePage from "./HomePage";
 import Dashboard from "../components/Dashboard";
+import ScanAppointment from "../components/ScanAppointment";
 
 const routes = createBrowserRouter([
   {
@@ -22,13 +23,17 @@ const routes = createBrowserRouter([
             element: <Dashboard />,
             children: [
               {
-                path: "/dashboard/createappointment",
+                path: "createappointment",
                 element: <CreateAppointment />,
               },
               {
-                path: "/dashboard/activeappointment",
+                path: "activeappointment",
                 element: <ActiveAppointment />,
               },
+              {
+                path: "scanappointment",
+                element: <ScanAppointment />,
+              }
             ],
           },
         ],

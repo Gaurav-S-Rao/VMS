@@ -1,7 +1,7 @@
 import Container from "@mui/material/Container";
 import { Avatar, Box, Button, TextField, Typography } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockClockOutlined";
-import { hostDetails } from "../data/details";
+import { hostDetails, securityDetails } from "../data/details";
 import { useNavigate } from "react-router-dom";
 
 import { useNotification } from "../hooks/useNotification";
@@ -22,11 +22,21 @@ function LoginPage() {
         type: "success",
         message: "Loged in as a Host Successfully",
       });
+    } else if (
+      email === securityDetails.email &&
+      password === securityDetails.password
+    ) {
+      dispatch(setLogin({ userId: 2, userRole: "security" }));
+      displayNotification({
+        type: "success",
+        message: "Loged in as a Security Successfully",
+      });
     } else {
       displayNotification({
         type: "error",
         message: "Invalid Credentials",
       });
+      navigate("/");
     }
   };
 
