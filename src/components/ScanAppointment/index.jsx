@@ -1,6 +1,6 @@
 import { Container, Toolbar, Typography } from "@mui/material";
 import PropTypes from "prop-types";
-
+import qr from "./qr-logo.png";
 function ScanAppointment() {
   return (
     <>
@@ -22,7 +22,12 @@ function ScanAppointment() {
           m: "10px",
         }}
       >
-        <h1>Scan Appointment</h1>
+        <button className="w-80 h-80 border-black border-10 border-r-10 rounded-lg bg-slate-500">
+          <img src={qr} />
+        </button>
+        <Typography variant="h3">Scan Qr</Typography>
+        <br />
+        <Typography variant="h5">Status:</Typography>
       </Container>
     </>
   );
