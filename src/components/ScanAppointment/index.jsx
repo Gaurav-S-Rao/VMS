@@ -1,9 +1,24 @@
 import { Container, Toolbar, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import qr from "./qr-logo.png";
+import Webcam from "react-webcam";
+import { useCallback, useRef, useState } from "react";
+
+const videoConstraints = {
+  width: 400,
+  height: 400,
+  facingMode: "user",
+};
+
 function ScanAppointment() {
+  const [picture, setPicture] = useState("");
+  const webcamRef = useRef(null);
+  const capture = useCallback(() => {
+    const pictureSrc = webcamRef.current.getScreenshot();
+    setPicture(pictureSrc);
+  });
   return (
-    <>
+    <>ch
       <Toolbar>
         <Typography variant="h4" component="div">
           Scan Appointment to continue
@@ -22,11 +37,49 @@ function ScanAppointment() {
           m: "10px",
         }}
       >
-        <button className="w-80 h-80 border-black border-10 border-r-10 rounded-lg bg-slate-500">
-          <img src={qr} />
-        </button>
-        <Typography variant="h3">Scan Qr</Typography>
-        <br />
+        <div>
+          <h2 className="mb-5 text-center">
+            React Photo Capture using Webcam Examle
+          </h2>
+          <div>
+            {picture == "" ? (
+              <Webcam
+                audio={false}
+                height={400}
+                ref={webcamRef}
+                width={400}
+                screenshotFormat="image/jpeg"
+                videoConstraints={videoConstraints}
+              />
+            ) : (
+              <img src={picture} />
+            )}
+          </div>
+          <div>
+            {picture != "" ? (
+              // <button
+              //   onClick={(e) => {
+              //     e.preventDefault();
+              //     setPicture();
+              //   }}
+              //   className="btn btn-primary"
+              // >
+              //   Retake
+              // </button>
+              <></>
+            ) : (
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  capture();
+                }}
+                className="btn btn-danger"
+              >
+                Capture
+              </button>
+            )}
+          </div>
+        </div>
         <Typography variant="h5">Status:</Typography>
       </Container>
     </>

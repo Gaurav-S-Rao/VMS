@@ -30,6 +30,9 @@ function CreateAppointment() {
               {" "}
               Name:{" "}
               <TextField
+                sx={{
+                  m: 1,
+                }}
                 id="outlined-basic"
                 label="enter name"
                 variant="outlined"
@@ -39,6 +42,9 @@ function CreateAppointment() {
               {" "}
               Email:{" "}
               <TextField
+                sx={{
+                  m: 1,
+                }}
                 id="outlined-basic"
                 label="enter email"
                 variant="outlined"
@@ -48,6 +54,9 @@ function CreateAppointment() {
               {" "}
               Phone:{" "}
               <TextField
+                sx={{
+                  m: 1,
+                }}
                 id="outlined-basic"
                 label="enter phone no."
                 variant="outlined"
@@ -57,6 +66,9 @@ function CreateAppointment() {
               {" "}
               Purpose:{" "}
               <TextField
+                sx={{
+                  m: 1,
+                }}
                 id="outlined-basic"
                 label="enter purpose of visit"
                 variant="outlined"
@@ -66,6 +78,9 @@ function CreateAppointment() {
               {" "}
               Date:{" "}
               <TextField
+                sx={{
+                  m: 1,
+                }}
                 id="outlined-basic"
                 label="enter date of visit"
                 variant="outlined"
