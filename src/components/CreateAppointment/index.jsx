@@ -8,9 +8,11 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useState } from "react";
 import dayjs from "dayjs";
+import { useNotification } from "../../hooks/useNotification";
 
 function CreateAppointment() {
   const [appointmentdate, setAppointmentdate] = useState(dayjs());
+  const { displayNotification } = useNotification();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -35,10 +37,14 @@ function CreateAppointment() {
     })
       .then((response) => response.json())
       .then((data) => console.log(data));
-      
-      Array.from(document.querySelectorAll("input")).forEach(
-        input => (input.value = "")
-      );
+
+    Array.from(document.querySelectorAll("input")).forEach(
+      (input) => (input.value = "")
+    );
+    displayNotification({
+      type: "info",
+      message: "Successfully Created Appointment",
+    });
   };
 
   return (

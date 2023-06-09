@@ -10,6 +10,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
@@ -27,6 +28,18 @@ function ActiveAppointment() {
     }
     fetchData();
   }, []);
+
+  // const deleteEntry = async ({userId}) => {
+  //   await fetch(`https://sheetdb.io/api/v1/58f61be4dda40/userId/${userId}`, {
+  //     method: "DELETE",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => console.log(data));
+  // };
 
   return (
     <>
@@ -54,9 +67,11 @@ function ActiveAppointment() {
               <TableRow>
                 <TableCell>USER ID</TableCell>
                 <TableCell align="right">NAME</TableCell>
+                <TableCell align="right">E-MAIL</TableCell>
                 <TableCell align="right">Contact Number</TableCell>
                 <TableCell align="right">Purpose Of Visit</TableCell>
                 <TableCell align="right">Appointment Date</TableCell>
+                <TableCell align="right">Approval</TableCell>
               </TableRow>
             </TableHead>
           </Table>
@@ -70,9 +85,21 @@ function ActiveAppointment() {
             <>
               <TableRow
                 key={appointment}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                sx={{
+                  "&:last-child td, &:last-child th": { border: 0 },
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
               >
-                <TableCell component="th" scope="row">
+                <TableCell
+                  component="th"
+                  scope="row"
+                  sx={{
+                    maxWidth: "150px",
+                  }}
+                >
                   {appointment?.userId}
                 </TableCell>
                 <TableCell align="right">{appointment.name}</TableCell>
@@ -87,6 +114,14 @@ function ActiveAppointment() {
                 {/* show a tick icon or wrong based on TRUE or FALSE */}
                 <TableCell align="right">
                   {appointment.approvalByHost}
+                </TableCell>
+                <TableCell align="right">
+                  <DeleteForeverIcon
+                    sx={{
+                      color: "red",
+                    }}
+                    // onClick={() => deleteEntry(appointment.userId)}
+                  />
                 </TableCell>
               </TableRow>
             </>
