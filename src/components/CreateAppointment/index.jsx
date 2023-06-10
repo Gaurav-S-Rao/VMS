@@ -27,14 +27,6 @@ function CreateAppointment() {
       appointmentdate: dayjs(appointmentdate).format("DD/MM/YYYY HH:mm:ss"),
       approvalByHost: "FALSE",
     };
-    emailjs.send(
-      "service_uwbg1rs",
-      "template_lzm9exa",
-      {
-        email: "ohshinbhat4@gmail.com",
-      },
-      "4pCfYAtmm9ajgBNI3"
-    );
 
     await fetch("https://sheetdb.io/api/v1/vmdyjsot299jv", {
       method: "POST",
@@ -49,6 +41,14 @@ function CreateAppointment() {
       .then((response) => response.json())
       .then((data) => console.log(data));
 
+    emailjs.send(
+      "service_uwbg1rs",
+      "template_lzm9exa",
+      {
+        email: data.get("email").toString(),
+      },
+      "4pCfYAtmm9ajgBNI3"
+    );
     Array.from(document.querySelectorAll("input")).forEach(
       (input) => (input.value = "")
     );
@@ -100,7 +100,6 @@ function CreateAppointment() {
             label="Email Address"
             name="email"
             autoComplete="email"
-            value={"ohshinbhat4@gmail.com"}
           />
           <TextField
             margin="normal"
