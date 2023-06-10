@@ -63,10 +63,12 @@ function ScanAppointment() {
         }}
       >
         <div id="reader"></div>
-        <Typography
-        >
-          USER ID IS
-          {scanResult && <Box>{scanResult}</Box>}</Typography>
+        {scanResult && (
+          <Typography>
+            USER ID IS
+            <Box>{scanResult}</Box>
+          </Typography>
+        )}
       </Container>
     </>
   );
