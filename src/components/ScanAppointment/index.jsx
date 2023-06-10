@@ -1,8 +1,9 @@
-import { Container, Toolbar, Typography } from "@mui/material";
+import { Box, Container, Toolbar, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import qr from "./qr-logo.png";
 import Webcam from "react-webcam";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Html5QrcodeScanner } from "html5-qrcode";
 
 const videoConstraints = {
   width: 400,
@@ -13,12 +14,36 @@ const videoConstraints = {
 function ScanAppointment() {
   const [picture, setPicture] = useState("");
   const webcamRef = useRef(null);
+  const [scanResult, setScanResult] = useState(null);
   const capture = useCallback(() => {
     const pictureSrc = webcamRef.current.getScreenshot();
     setPicture(pictureSrc);
   });
+
+  useEffect(() => {
+    const scanner = new Html5QrcodeScanner("reader", {
+      qrbox: {
+        width: 250,
+        height: 250,
+      },
+      fps: 5,
+    });
+
+    scanner.render(success, error);
+
+    function success(result) {
+      scanner.clear();
+      setScanResult(result);
+    }
+
+    function error(err) {
+      console.warn(err);
+    }
+  }, []);
+
   return (
-    <>ch
+    <>
+      ch
       <Toolbar>
         <Typography variant="h4" component="div">
           Scan Appointment to continue
@@ -37,50 +62,11 @@ function ScanAppointment() {
           m: "10px",
         }}
       >
-        <div>
-          <h2 className="mb-5 text-center">
-            React Photo Capture using Webcam Examle
-          </h2>
-          <div>
-            {picture == "" ? (
-              <Webcam
-                audio={false}
-                height={400}
-                ref={webcamRef}
-                width={400}
-                screenshotFormat="image/jpeg"
-                videoConstraints={videoConstraints}
-              />
-            ) : (
-              <img src={picture} />
-            )}
-          </div>
-          <div>
-            {picture != "" ? (
-              // <button
-              //   onClick={(e) => {
-              //     e.preventDefault();
-              //     setPicture();
-              //   }}
-              //   className="btn btn-primary"
-              // >
-              //   Retake
-              // </button>
-              <></>
-            ) : (
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  capture();
-                }}
-                className="btn btn-danger"
-              >
-                Capture
-              </button>
-            )}
-          </div>
-        </div>
-        <Typography variant="h5">Status:</Typography>
+        <div id="reader"></div>
+        <Typography
+        >
+          USER ID IS
+          {scanResult && <Box>{scanResult}</Box>}</Typography>
       </Container>
     </>
   );
