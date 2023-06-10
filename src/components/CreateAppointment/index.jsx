@@ -9,6 +9,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useState } from "react";
 import dayjs from "dayjs";
 import { useNotification } from "../../hooks/useNotification";
+import emailjs from "@emailjs/browser";
 
 function CreateAppointment() {
   const [appointmentdate, setAppointmentdate] = useState(dayjs());
@@ -16,6 +17,7 @@ function CreateAppointment() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+
     const prepareData = {
       userId: uuidv4(),
       name: data.get("name"),
@@ -25,6 +27,15 @@ function CreateAppointment() {
       appointmentdate: dayjs(appointmentdate).format("DD/MM/YYYY HH:mm:ss"),
       approvalByHost: "FALSE",
     };
+    emailjs.send(
+      "service_uwbg1rs",
+      "template_lzm9exa",
+      {
+        email: "ohshinbhat4@gmail.com",
+      },
+      "4pCfYAtmm9ajgBNI3"
+    );
+
     await fetch("https://sheetdb.io/api/v1/vmdyjsot299jv", {
       method: "POST",
       headers: {
@@ -89,6 +100,7 @@ function CreateAppointment() {
             label="Email Address"
             name="email"
             autoComplete="email"
+            value={"ohshinbhat4@gmail.com"}
           />
           <TextField
             margin="normal"
