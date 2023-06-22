@@ -44,13 +44,13 @@ function ActiveAppointment() {
   return (
     <>
       <Toolbar>
-        <Typography variant="h4" component="div">
+        <Typography variant="h4" component="div" sx={{ color: "white" }}>
           View Active Appointment
         </Typography>
       </Toolbar>
       <Container
         sx={{
-          backgroundColor: "#e6f2ff",
+          backgroundColor: "rgba(136, 136, 140, 0.56)",
           borderRadius: "10px",
           height: "70vh",
           width: "100%",
@@ -62,16 +62,31 @@ function ActiveAppointment() {
         }}
       >
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table
+            sx={{ minWidth: 650, backgroundColor: "black" }}
+            aria-label="simple table"
+          >
             <TableHead>
               <TableRow>
-                <TableCell>USER ID</TableCell>
-                <TableCell align="right">NAME</TableCell>
-                <TableCell align="right">E-MAIL</TableCell>
-                <TableCell align="right">Contact Number</TableCell>
-                <TableCell align="right">Purpose Of Visit</TableCell>
-                <TableCell align="right">Appointment Date</TableCell>
-                <TableCell align="right">Approval</TableCell>
+                <TableCell sx={{ color: "white" }}>USER ID</TableCell>
+                <TableCell align="right" sx={{ color: "white" }}>
+                  NAME
+                </TableCell>
+                <TableCell align="right" sx={{ color: "white" }}>
+                  E-MAIL
+                </TableCell>
+                <TableCell align="right" sx={{ color: "white" }}>
+                  Contact Number
+                </TableCell>
+                <TableCell align="right" sx={{ color: "white" }}>
+                  Purpose Of Visit
+                </TableCell>
+                <TableCell align="right" sx={{ color: "white" }}>
+                  Appointment Date
+                </TableCell>
+                <TableCell align="right" sx={{ color: "white" }}>
+                  Approval
+                </TableCell>
               </TableRow>
             </TableHead>
           </Table>

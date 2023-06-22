@@ -68,107 +68,175 @@ function CreateAppointment() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Toolbar>
-        <Typography variant="h4" component="div">
-          Creation of Appointment
-        </Typography>
-      </Toolbar>
-      <Container
-        sx={{
-          backgroundColor: "#e6f2ff",
-          borderRadius: "10px",
-          height: "70vh",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          alignItems: "center",
-          m: "10px",
-        }}
-      >
-        {loggedIn === 0 ? (
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1, display: "flex", flexDirection: "column" }}
-          >
-            <TextField
-              margin="normal"
-              required
-              id="name"
-              label="User Name"
-              name="name"
-              autoComplete="name"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-            />
-            <TextField
-              margin="normal"
-              required
-              name="number"
-              label="Contact Number"
-              type="number"
-              id="number"
-            />
-            <TextField
-              margin="normal"
-              required
-              id="purposeOfVisit"
-              label="Purpose of Visit"
-              name="purposeOfVisit"
-              autoComplete="purposeOfVisit"
-              autoFocus
-            />
-
-            <DateTimePicker
-              label="Set Appointment"
-              value={appointmentdate}
-              onChange={(newValue) => setAppointmentdate(newValue)}
-            />
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Create Appointment
-            </Button>
-          </Box>
-        ) : (
-          <div
-            style={{
-              height: "auto",
-              margin: "0 auto",
-              maxWidth: 256,
-              width: "100%",
-            }}
-          >
-            <Typography
-              variant="primary"
+      <div>
+        <Toolbar>
+          <Typography variant="h4" component="div" sx={{ color: "white" }}>
+            Creation of Appointment
+          </Typography>
+        </Toolbar>
+        <Container
+          sx={{
+            backgroundColor: "rgba(136, 136, 140, 0.56)",
+            borderRadius: "10px",
+            height: "70vh",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+            m: "10px",
+            gap: "5px",
+          }}
+        >
+          {loggedIn === 0 ? (
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
               sx={{
-                fontSize: "50px",
+                mt: 1,
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
               }}
             >
-              Qr Code here
-            </Typography>
-            <QRCode
-              size={256}
-              style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-              value={userIdHere}
-              viewBox={`0 0 256 256`}
-            />
-          </div>
-        )}
-      </Container>
+              <Container
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: "20px",
+                }}
+              >
+                <Typography sx={{ fontSize: "20px", textDecoration: "bold" }}>
+                  Name:
+                </Typography>
+                <TextField
+                  margin="normal"
+                  required
+                  id="name"
+                  label="Visitor Name"
+                  name="name"
+                  autoComplete="name"
+                  autoFocus
+                />
+              </Container>
+              <Container
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: "20px",
+                }}
+              >
+                <Typography sx={{ fontSize: "20px", textDecoration: "bold" }}>
+                  Email:
+                </Typography>
+                <TextField
+                  margin="normal"
+                  required
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Container>
+              <Container
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: "20px",
+                }}
+              >
+                <Typography sx={{ fontSize: "20px", textDecoration: "bold" }}>
+                  Phone:
+                </Typography>
+                <TextField
+                  margin="normal"
+                  required
+                  name="number"
+                  label="Contact Number"
+                  type="number"
+                  id="number"
+                />
+              </Container>
+              <Container
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: "20px",
+                }}
+              >
+                <Typography sx={{ fontSize: "20px", textDecoration: "bold" }}>
+                  Purpose:
+                </Typography>
+                <TextField
+                  margin="normal"
+                  required
+                  id="purposeOfVisit"
+                  label="Purpose of Visit"
+                  name="purposeOfVisit"
+                  autoComplete="purposeOfVisit"
+                  autoFocus
+                />
+              </Container>
+              <Container
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: "20px",
+                }}
+              >
+                <Typography sx={{ fontSize: "20px", textDecoration: "bold" }}>
+                  Date:
+                </Typography>
+
+                <DateTimePicker
+                  label="Set Appointment"
+                  value={appointmentdate}
+                  onChange={(newValue) => setAppointmentdate(newValue)}
+                />
+              </Container>
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 5, mb: 2, backgroundColor: "#06d6a0" }}
+              >
+                Create Appointment
+              </Button>
+            </Box>
+          ) : (
+            <div
+              style={{
+                height: "auto",
+                margin: "0 auto",
+                maxWidth: 256,
+                width: "100%",
+              }}
+            >
+              <Typography
+                variant="primary"
+                sx={{
+                  fontSize: "50px",
+                }}
+              >
+                Qr Code here
+              </Typography>
+              <QRCode
+                size={256}
+                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                value={userIdHere}
+                viewBox={`0 0 256 256`}
+              />
+            </div>
+          )}
+        </Container>
+      </div>
     </LocalizationProvider>
   );
 }

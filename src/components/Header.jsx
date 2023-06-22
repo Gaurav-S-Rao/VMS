@@ -29,15 +29,16 @@ export default function ButtonAppBar() {
   const handleHome = () => navigate("/");
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, backgroundColor: "black" }}>
       {auth && (
         <AppBar
           position="static"
           sx={{
             width: "100%",
+            backgroundColor: "black",
           }}
         >
-          <Toolbar>
+          <Toolbar sx={{ backgroundColor: "black" }}>
             <Typography
               variant="h6"
               component="h2"
@@ -52,6 +53,7 @@ export default function ButtonAppBar() {
                 display: "flex",
                 alignItems: "center",
                 "& > :not(style)": { m: 1 },
+                backgroundColor: "black",
               }}
             >
               <Button
@@ -78,6 +80,7 @@ export default function ButtonAppBar() {
                 </IconButton>
                 <Menu
                   id="menu-appbar"
+                  sx={{ backgroundColor: "black" }}
                   anchorEl={anchorEl}
                   anchorOrigin={{
                     vertical: "top",
@@ -91,7 +94,12 @@ export default function ButtonAppBar() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={handleProfile}>Dashboard</MenuItem>
+                  <MenuItem
+                    onClick={handleProfile}
+                    sx={{ backgroundColor: "black" }}
+                  >
+                    Dashboard
+                  </MenuItem>
                   {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
                 </Menu>
               </div>
