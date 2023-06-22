@@ -4,5 +4,5 @@
 ### Install dependencies
 > npm i
 
-##T To run the application
+### To run the application
 > npm run dev
