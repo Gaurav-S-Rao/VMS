@@ -45,13 +45,13 @@ function ScanAppointment() {
     <>
       ch
       <Toolbar>
-        <Typography variant="h4" component="div">
+        <Typography variant="h4" component="div" sx={{ color: "white" }}>
           Scan Appointment to continue
         </Typography>
       </Toolbar>
       <Container
         sx={{
-          backgroundColor: "#e6f2ff",
+          backgroundColor: "rgba(136, 136, 140, 0.56)",
           borderRadius: "10px",
           height: "70vh",
           width: "100%",

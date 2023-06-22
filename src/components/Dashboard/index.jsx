@@ -43,6 +43,7 @@ const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   "& .MuiDrawer-paper": {
+    backgroundColor: "#000000",
     position: "relative",
     whiteSpace: "nowrap",
     width: drawerWidth,
@@ -89,9 +90,13 @@ function DashboardContent() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", backgroundColor: "#f0f0f0" }}>
       <CssBaseline />
-      <AppBar position="absolute" open={open}>
+      <AppBar
+        position="absolute"
+        open={open}
+        sx={{ backgroundColor: "#06d6a0" }}
+      >
         <Toolbar
           sx={{
             pr: "24px",
@@ -113,19 +118,20 @@ function DashboardContent() {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" open={open} sx={{ backgroundColor: "black" }}>
         <List component="nav">
           {operation.map((item) => (
             <ListItemButton
               key={item}
               selected={location.pathname.split("/")[2] === item.path}
               sx={{
+                color: "white",
                 "&.Mui-selected": {
-                  backgroundColor: "primary.main",
+                  backgroundColor: "rgba(136, 136, 140, 0.56)",
                   color: "#fff",
                 },
                 "&.Mui-selected:hover": {
-                  backgroundColor: "primary.main",
+                  backgroundColor: "rgba(136, 136, 140, 0.56)",
                   color: "#fff",
                 },
                 mx: "10px",
@@ -143,7 +149,7 @@ function DashboardContent() {
         component="main"
         sx={{
           backgroundColor: (theme) =>
-            theme.palette.mode === "light"
+            theme.palette.mode === "dark"
               ? theme.palette.grey[100]
               : theme.palette.grey[900],
           flexGrow: 1,
@@ -165,10 +171,11 @@ function DashboardContent() {
                 alignItems: "center",
                 justifyContent: "center",
                 height: "80vh",
+                color: "white",
               }}
             >
               {title}
-              <Typography component="h2" variant="h4" color="inherit">
+              <Typography component="h2" variant="h4" color="white">
                 Follow the left side menu to navigate
               </Typography>
             </Typography>
